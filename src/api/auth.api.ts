@@ -23,7 +23,7 @@ type LoginRequest = {
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: axiosBaseQuery({ baseUrl: "http://localhost:3001/api" }),
+  baseQuery: axiosBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BACKEND_API_URL! }),
   endpoints: (builder) => ({
     register: builder.mutation<RegisterResponse, FormData>({
       query: (data) => ({
