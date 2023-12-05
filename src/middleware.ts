@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { verifyAccessToken } from "./verifyAccessToken";
+import { verifyAccessToken } from "./utils/verifyAccessToken";
 
 const TEMPORARY_REDIRECT = 307;
 const PUBLIC_ROUTES = ["/login", "/register"];
