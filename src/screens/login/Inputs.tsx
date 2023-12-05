@@ -1,4 +1,4 @@
-import { ErrorMsg } from "@/components/ErrorMsg";
+import { ErrorMsg } from "@/components/shared/ErrorMsg";
 import { useFormContext } from "react-hook-form";
 import { Inputs } from "./types";
 

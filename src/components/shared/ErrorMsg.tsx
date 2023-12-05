@@ -1,8 +1,6 @@
 import { FieldError, Merge } from "react-hook-form";
 
 export function ErrorMsg({ fieldError }: { fieldError?: Merge<FieldError, (FieldError | undefined)[]> }) {
-  console.log(fieldError);
-
   if (!fieldError) {
     return null;
   }

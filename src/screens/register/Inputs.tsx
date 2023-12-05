@@ -1,7 +1,7 @@
 import { useDropzone } from "react-dropzone";
 import { useFormContext } from "react-hook-form";
 import { Inputs } from "./types";
-import { ErrorMsg } from "../../components/ErrorMsg";
+import { ErrorMsg } from "../../components/shared/ErrorMsg";
 
 export function FirstNameInput() {
   const {
