@@ -1,5 +1,1 @@
-import Image from "next/image";
-
-export default function Home() {
-  return <main className="">Home</main>;
-}
+export { HomeScreen as default } from "@/screens/home/HomeScreen";
