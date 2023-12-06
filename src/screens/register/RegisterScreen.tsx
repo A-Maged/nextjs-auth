@@ -37,7 +37,7 @@ export function RegisterScreen() {
 
             <button
               type="submit"
-              className="mt-5 bg-blue-500 disabled:bg-blue-200 text-white rounded-md py-2"
+              className="mt-5 bg-blue-500 disabled:bg-blue-200 text-white rounded-md py-2 flex justify-center items-center gap-2"
             >
               {isLoading ? <Spinner /> : "Register"}
             </button>
