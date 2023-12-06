@@ -8,7 +8,9 @@ import { useRouter } from "next/navigation";
 export function useRegister() {
   const router = useRouter();
 
-  const formMethods = useForm<Inputs>();
+  const formMethods = useForm<Inputs>({
+    reValidateMode: "onChange",
+  });
 
   const [register, { isLoading, error, isError }] = useRegisterMutation();
 

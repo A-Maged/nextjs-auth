@@ -13,7 +13,19 @@ export function FirstNameInput() {
     <div>
       <label className="flex flex-col ">First name</label>
 
-      <input {...register("firstname", { required: "firstname is required" })} />
+      <input
+        {...register("firstname", {
+          required: "firstname is required",
+          minLength: {
+            value: 2,
+            message: "firstname must be at least 2 characters",
+          },
+          maxLength: {
+            value: 25,
+            message: "firstname cannot be more than 25 characters",
+          },
+        })}
+      />
 
       <ErrorMsg fieldError={errors.firstname} />
     </div>
@@ -30,7 +42,19 @@ export function LastnameInput() {
     <div>
       <label className="flex flex-col ">Last name</label>
 
-      <input {...register("lastname", { required: "lastname is required" })} />
+      <input
+        {...register("lastname", {
+          required: "lastname is required",
+          minLength: {
+            value: 2,
+            message: "lastname must be at least 2 characters",
+          },
+          maxLength: {
+            value: 25,
+            message: "lastname cannot be more than 25 characters",
+          },
+        })}
+      />
       {errors.lastname && <ErrorMsg fieldError={errors.lastname} />}
     </div>
   );
@@ -62,7 +86,25 @@ export function PasswordInput() {
     <div>
       <label className="flex flex-col ">Password</label>
 
-      <input {...register("password", { required: "password is required" })} type="password" />
+      <input
+        {...register("password", {
+          required: "password is required",
+          minLength: {
+            value: 6,
+            message: "password must be at least 6 characters",
+          },
+          maxLength: {
+            value: 50,
+            message: "password cannot be more than 50 characters",
+          },
+          pattern: {
+            value: /\d/,
+            message: "Password must contain at least one number",
+          },
+        })}
+        type="password"
+      />
+
       {errors.password && <ErrorMsg fieldError={errors.password} />}
     </div>
   );
