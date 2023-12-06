@@ -3,13 +3,14 @@
 import { usePhotosQuery, userApi } from "@/api/user.api";
 import { getImageUrl } from "../../utils/getImageUrl";
 import ImageGallery from "react-image-gallery";
+import { ScreenLoader } from "@/components/shared/ScreenLoader";
 
 export function HomeScreen() {
   const profileQuery = userApi.endpoints.profile.useQueryState();
   const photosQuery = usePhotosQuery();
 
   if (profileQuery.isFetching || photosQuery.isFetching) {
-    return "loading...";
+    return <ScreenLoader />;
   }
 
   if (profileQuery.isError) {
@@ -17,25 +18,24 @@ export function HomeScreen() {
     return null;
   }
 
+  if (photosQuery.isError) {
+    return <div className="h-screen flex justify-center items-center">Error loading photos</div>;
+  }
+
   return (
-    <main className="">
-      <ImageGallery
-        items={
-          photosQuery.data?.map((photo) => ({
-            original: getImageUrl({
-              ownerEmail: profileQuery.data?.email!,
-              fileCategory: "photos",
-              fileName: photo.url,
-            }),
-            thumbnail: getImageUrl({
-              ownerEmail: profileQuery.data?.email!,
-              fileCategory: "photos",
-              fileName: photo.url,
-            }),
-          })) || []
-        }
-      />
-      ;
-    </main>
+    <ImageGallery
+      items={(photosQuery.data || []).map((photo) => ({
+        original: getImageUrl({
+          ownerEmail: profileQuery.data?.email!,
+          fileCategory: "photos",
+          fileName: photo.url,
+        }),
+        thumbnail: getImageUrl({
+          ownerEmail: profileQuery.data?.email!,
+          fileCategory: "photos",
+          fileName: photo.url,
+        }),
+      }))}
+    />
   );
 }
