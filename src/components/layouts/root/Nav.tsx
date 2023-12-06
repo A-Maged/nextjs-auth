@@ -16,18 +16,19 @@ export function Nav() {
     return null;
   }
 
+  const avatarUrl = profileQuery.data?.avatar?.startsWith("http")
+    ? profileQuery.data?.avatar
+    : getImageUrl({
+        ownerEmail: profileQuery.data?.email!,
+        fileCategory: "avatar",
+        fileName: profileQuery.data?.avatar!,
+      });
+
   return (
     <div className="p-2 bg-white text-black shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <img
-            src={getImageUrl({
-              ownerEmail: profileQuery.data?.email!,
-              fileCategory: "avatar",
-              fileName: profileQuery.data?.avatar!,
-            })}
-            className="w-14 h-14 rounded-full object-cover"
-          />
+          <img src={avatarUrl} className="w-14 h-14 rounded-full object-cover" />
 
           <div>
             <p className="font-bold capitalize">
