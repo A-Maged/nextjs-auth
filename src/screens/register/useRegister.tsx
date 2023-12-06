@@ -4,12 +4,13 @@ import { Inputs } from "./types";
 import { useRegisterMutation } from "@/api/auth.api";
 import { ApiError } from "@/api/types";
 import { useRouter } from "next/navigation";
+import { NEW_REGISTER_LOCAL_STORAGE } from "@/utils/constants";
 
 export function useRegister() {
   const router = useRouter();
 
   const formMethods = useForm<Inputs>({
-    reValidateMode: "onChange",
+    mode: "onChange",
   });
 
   const [register, { isLoading, error, isError }] = useRegisterMutation();
@@ -39,7 +40,9 @@ export function useRegister() {
     try {
       await register(bodyFormData).unwrap();
 
-      router.push("/");
+      localStorage.setItem(NEW_REGISTER_LOCAL_STORAGE, "true");
+
+      router.push("/completed-registration");
     } catch (error) {
       Object.entries(error as ApiError).forEach(([fieldName, message]) => {
         formMethods.setError(fieldName?.toLowerCase() as keyof Inputs, {

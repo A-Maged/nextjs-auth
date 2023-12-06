@@ -11,6 +11,7 @@ import {
 } from "./Inputs";
 import { useRegister } from "./useRegister";
 import Link from "next/link";
+import { Spinner } from "@/components/shared/Spinner";
 
 export function RegisterScreen() {
   const { formMethods, isLoading, onSubmit } = useRegister();
@@ -38,7 +39,7 @@ export function RegisterScreen() {
               type="submit"
               className="mt-5 bg-blue-500 disabled:bg-blue-200 text-white rounded-md py-2"
             >
-              {isLoading ? "Loading..." : "Register"}
+              {isLoading ? <Spinner /> : "Register"}
             </button>
           </form>
         </FormProvider>
